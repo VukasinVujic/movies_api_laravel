@@ -14,9 +14,10 @@ class Movies extends Controller
      */
     public function index(Request $request)
     {
+        $take = $request->input('take') ?? 10;
+        $skip = $request->input('skip') ?? 0;
      
-
-        $filterMovies = Movie::filter(Movie::query(), $request)->paginate(20); 
+        $filterMovies = Movie::filter(Movie::query(), $request)->take($take)->skip($skip)->get(); 
 
         return $filterMovies;
         // return Movie::all();
