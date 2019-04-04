@@ -12,9 +12,14 @@ class Movies extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Movie::all();
+     
+
+        $filterMovies = Movie::filter(Movie::query(), $request)->paginate(20); 
+
+        return $filterMovies;
+        // return Movie::all();
     }
 
     /**
