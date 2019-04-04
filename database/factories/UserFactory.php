@@ -24,3 +24,18 @@ $factory->define(User::class, function (Faker $faker) {
         'remember_token' => Str::random(10),
     ];
 });
+
+$factory->define(App\Movie::class, function (Faker $faker){
+    return [
+        'title' => $faker->title,
+        'director'=> $faker->paragraph,
+        'imageUrl'=> $faker->imageUrl,
+        'duration'=>$faker->numberBetween(60,254),
+        'releaseDate'=>$faker->date,
+        'genre'=>$faker->paragraph
+            
+        ];
+});
+
+
+
