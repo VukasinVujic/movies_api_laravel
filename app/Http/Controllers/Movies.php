@@ -31,6 +31,15 @@ class Movies extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required|unique:movies,title',
+            'director'=>'required',
+            'duration'=>'required|integer|digits_between:1,500',
+            'releaseDate'=>'required|unique:movies,releaseDate',
+            'imageURL'=>'url',
+
+        ]);
+
         return Movie::create($request->all());
     }
 
@@ -62,6 +71,16 @@ class Movies extends Controller
      */
     public function update(Request $request, Movie $movie)
     {
+
+        $request->validate([
+            'title' => 'required|unique:movies,title',
+            'director'=>'required',
+            'duration'=>'required|integer|digits_between:1,500',
+            'releaseDate'=>'required|unique:movies,releaseDate',
+            'imageURL'=>'url',
+
+        ]);
+
         $movie->update($request->all());
         return $movie;
     }
